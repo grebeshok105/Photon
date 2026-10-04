@@ -50,7 +50,7 @@ dependencies {
     modRuntimeOnly "net.fabricmc:fabric-language-kotlin:${project.fabric_language_kotlin_version}"
 
     // Vendored fabric ports (grebeshok105/LDLib2 + grebeshok105/KilaGraph, fabric-1.21.1 branches)
-    modImplementation files('libs/ldlib2-fabric-1.21.1-2.4.jar')
+    modImplementation files('libs/ldlib2-fabric-1.21.1-2.7.jar')
     modImplementation files('libs/kilagraph-fabric-1.21.1-21.1.0.15-fabric.jar')
 
     // kilagraph's fluid nodes build against the architectury FluidStack API
