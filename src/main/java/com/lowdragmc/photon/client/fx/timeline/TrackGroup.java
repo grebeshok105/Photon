@@ -4,8 +4,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  * player flattens groups away ({@link Timeline#leafTracks(boolean)}) — a muted group's whole subtree is
  * ignored. Child (de)serialization reuses {@link Timeline#writeTrack}/{@link Timeline#readTrack}.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class TrackGroup extends Track {
     private final List<Track> children = new ArrayList<>();
 

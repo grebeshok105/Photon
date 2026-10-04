@@ -5,8 +5,8 @@ import com.lowdragmc.photon.client.postfx.graph.TargetFormat;
 import com.mojang.blaze3d.platform.GlStateManager;
 import lombok.Getter;
 import net.minecraft.client.Minecraft;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.lwjgl.opengl.GL30;
 
 /**
@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL30;
  * the FBO attachment references the texture object, which survives a respec. (The transient double
  * allocation only happens on create/resize; pooled targets are long-lived.)
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class FormatTarget extends HDRTarget {
 
     @Getter

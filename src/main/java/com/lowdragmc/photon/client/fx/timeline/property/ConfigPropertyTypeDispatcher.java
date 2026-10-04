@@ -6,8 +6,8 @@ import com.lowdragmc.photon.client.fx.timeline.AnimatedPropertyType;
 import com.lowdragmc.photon.client.gameobject.FXObject;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * The single registry singleton for {@code "config"} animatable properties. It exists only to
@@ -15,7 +15,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * (reconstructed from the stored {@code path}/{@code valueType}/{@code label}); the live editor builds
  * its own full-metadata instances via {@link ConfigPropertyType#discover}.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class ConfigPropertyTypeDispatcher implements AnimatedPropertyType {
     @LDLRegisterClient(name = "config", registry = "photon:animated_property")
     public static final ConfigPropertyTypeDispatcher INSTANCE = new ConfigPropertyTypeDispatcher();

@@ -15,8 +15,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector4f;
 
@@ -41,7 +41,7 @@ import java.util.function.Supplier;
  * Persisted manually (see {@link AdditionalGPUDataSetting#serializeAdditionalNBT}) through
  * {@link NumberFunction}'s CODEC wrapper, so the concrete function type round-trips.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class CustomData {
 
     public enum Type { VECTOR, COLOR }

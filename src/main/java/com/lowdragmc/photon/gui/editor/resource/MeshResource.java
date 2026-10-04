@@ -235,11 +235,11 @@ public class MeshResource extends Resource<MeshData> {
         return container;
     }
 
-    public void onAdditionalModel(Consumer<ModelResourceLocation> registry) {
+    public void onAdditionalModel(Consumer<ResourceLocation> registry) {
         for (var meshData : getLoadedResourceMeshes()) {
             // only json models go through the bakery; obj sources are parsed at runtime
             if (meshData.getSource() instanceof JsonModelSource json) {
-                registry.accept(ModelResourceLocation.standalone(json.getModelLocation()));
+                registry.accept(json.getModelLocation());
             }
         }
     }

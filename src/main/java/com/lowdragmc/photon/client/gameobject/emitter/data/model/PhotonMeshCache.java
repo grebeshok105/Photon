@@ -4,8 +4,8 @@ import com.lowdragmc.photon.client.gameobject.emitter.data.model.skin.SkinnedMod
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,7 +22,7 @@ import java.util.function.Function;
  * {@link PhotonMesh}. Thread-safe: loads run per-key-atomic under {@code computeIfAbsent}
  * (the parallel particle sim and the render thread both call {@link #get}).
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class PhotonMeshCache implements ResourceManagerReloadListener {
     public static final PhotonMeshCache INSTANCE = new PhotonMeshCache();
 

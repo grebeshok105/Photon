@@ -1,13 +1,13 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model.skin;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * glTF's {@code JOINTS_0} / {@code WEIGHTS_0}, indexed by the mesh's vertex numbering.
  * A vertex whose weights sum to zero is rigid and left alone.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class MeshSkin {
 
     public static final int INFLUENCES = 4;

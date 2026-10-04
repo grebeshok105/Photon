@@ -14,8 +14,8 @@ import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.LoadingOverlay;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
@@ -29,7 +29,7 @@ import java.util.Objects;
  * material system. Load failures are cached as an empty mesh (cleared by reload/invalidate) so a
  * missing file doesn't retry every frame.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @LDLRegisterClient(name = "obj_model", registry = "photon:model_source")
 public class ObjModelSource implements IModelSource {
     @Getter
@@ -103,7 +103,7 @@ public class ObjModelSource implements IModelSource {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void buildConfigurator(ConfiguratorGroup father) {
         IModelSource.super.buildConfigurator(father);
         var buttonConfigurator = new Configurator();

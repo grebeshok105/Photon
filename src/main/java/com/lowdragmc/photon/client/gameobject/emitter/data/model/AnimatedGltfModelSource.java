@@ -29,8 +29,8 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -51,7 +51,7 @@ import java.util.function.Supplier;
  * share one deformation ({@link AnimatedPose}) and one render pass — which also means every particle is
  * in lockstep. {@link #perParticlePhase} trades that for a baked table the shader indexes per instance.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @LDLRegisterClient(name = "animated_gltf_model", registry = "photon:model_source")
 public class AnimatedGltfModelSource implements IModelSource, IDynamicMesh {
 
@@ -542,7 +542,7 @@ public class AnimatedGltfModelSource implements IModelSource, IDynamicMesh {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void buildConfigurator(ConfiguratorGroup father) {
         IModelSource.super.buildConfigurator(father);
         var buttonConfigurator = new Configurator();

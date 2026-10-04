@@ -1,14 +1,14 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model.skin;
 
 import com.lowdragmc.photon.client.gameobject.emitter.data.model.PhotonMesh;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 /** What a glTF file has to say about one model. A static model has a null skin and skeleton. */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public record SkinnedModel(PhotonMesh mesh, @Nullable MeshSkin skin, @Nullable Skeleton skeleton,
                            List<AnimationClip> clips) {
 

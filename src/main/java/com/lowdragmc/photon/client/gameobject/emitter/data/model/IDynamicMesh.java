@@ -1,7 +1,7 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
  * revision — a suballocator recycling a slice under us produces another model's vertices, silently.
  * {@link #onDrawn()} is the hook to pin the allocation with.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public interface IDynamicMesh {
 
     /** Vertex count, indices, UVs, shade, sprite bounds, and a rest pose. Returning a new instance costs

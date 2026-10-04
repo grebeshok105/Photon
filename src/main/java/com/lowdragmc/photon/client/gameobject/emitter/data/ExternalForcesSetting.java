@@ -22,8 +22,8 @@ import lombok.Setter;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ import java.util.function.Supplier;
  * {@link ForceFieldObject}s in the same FX scene affect this emitter's particles, scaled by a
  * multiplier curve, optionally restricted to an explicit list of fields.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @Setter
 @Getter
 public class ExternalForcesSetting extends ToggleGroup {

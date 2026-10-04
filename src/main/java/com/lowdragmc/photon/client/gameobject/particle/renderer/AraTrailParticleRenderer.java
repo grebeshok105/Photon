@@ -14,8 +14,8 @@ import it.unimi.dsi.fastutil.ints.IntList;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.util.Mth;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import org.joml.Vector2f;
@@ -35,7 +35,7 @@ import static com.lowdragmc.photon.client.gameobject.particle.aratrail.AraTrailP
  * per config's render pass; rendering is confined to the render thread, so shared scratch is safe.
  * The particle itself only simulates points; all mesh generation lives here.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @ParametersAreNonnullByDefault
 public class AraTrailParticleRenderer {
 

@@ -5,8 +5,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
  * keyframe-animate the target's local transform over the master-clock timeline. The bound channels
  * are driven absolutely (the curves own them); see {@link AnimatedProperty} for the value model.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class AnimationTrack extends Track {
     private final List<AnimatedProperty> properties = new ArrayList<>();
 

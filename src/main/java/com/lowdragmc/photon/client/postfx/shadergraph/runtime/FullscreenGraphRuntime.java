@@ -17,8 +17,8 @@ import com.lowdragmc.photon.gui.editor.resource.FullscreenShaderGraphResource;
 import com.lowdragmc.photon.gui.editor.resource.PhotonShaderFunctionGraphResource;
 import lombok.Getter;
 import net.minecraft.nbt.CompoundTag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -34,7 +34,7 @@ import java.util.Set;
  * <p>Staleness is detected by tag identity — the stored {@link CompoundTag} instance is replaced when
  * the resource is saved in the editor or reloaded from a pack. Render thread only.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class FullscreenGraphRuntime {
 
     private static final Map<IResourcePath, Entry> CACHE = new HashMap<>();

@@ -1,7 +1,7 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +23,7 @@ import java.util.Map;
  * size/origin are exactly what the author modelled. UV's V axis is optionally flipped
  * ({@code flipV}) since OBJ's bottom-left UV origin is upside-down relative to the MC sampler.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class ObjMeshParser {
 
     private ObjMeshParser() {

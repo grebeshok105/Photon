@@ -1,7 +1,7 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * Adapts an {@link IDynamicMesh} into an {@link IModelSource}.
@@ -17,7 +17,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * <p>Equality is the provider's identity, so emitters sharing one provider share a render pass, its
  * buffers and its upload, while different providers batch apart.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class DynamicMeshSource implements IModelSource {
 
     private final IDynamicMesh dynamic;

@@ -2,8 +2,8 @@ package com.lowdragmc.photon.uitest;
 
 import com.lowdragmc.lowdraglib2.uitest.TestContext;
 import com.lowdragmc.photon.Photon;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import javax.imageio.ImageIO;
@@ -20,7 +20,7 @@ import java.util.Comparator;
  * <p>Files are named {@code <step>_<name>.png} under {@code build/ldlib2-uitest/screenshots/<scenario>},
  * so a capture is found by suffix and the newest match wins.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 final class ScreenshotCompare {
 
     private final int width;

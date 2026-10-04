@@ -22,8 +22,8 @@ import net.minecraft.util.Mth;
 import org.joml.Vector3f;
 import lombok.Getter;
 import lombok.Setter;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * Pure-data spawn-shape config; value-use behaviour (setupParticle / drawGuideLines) lives on the
@@ -32,7 +32,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * @author KilaBash
  * @date 2023/5/27
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @Getter
 @Setter
 public class ShapeSetting implements IConfigurable, IPersistedSerializable {

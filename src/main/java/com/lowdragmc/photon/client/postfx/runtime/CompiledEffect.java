@@ -7,8 +7,8 @@ import com.lowdragmc.photon.client.postfx.graph.SizeSpec;
 import com.lowdragmc.photon.client.postfx.graph.TargetFormat;
 import com.lowdragmc.photon.client.postfx.shadergraph.FullscreenShaderGraph;
 import com.lowdragmc.photon.client.postfx.shadergraph.runtime.FullscreenGraphRuntime;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import java.util.TreeMap;
  * wired from the render graph's Effect Weight node). The executor's auto final mix uses the same
  * weight regardless of whether any pass reads it.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public record CompiledEffect(
         IResourcePath source,
         int priority,

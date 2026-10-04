@@ -49,8 +49,8 @@ import com.lowdragmc.photon.client.gameobject.emitter.data.number.curve.RandomCu
 import dev.vfyjxf.taffy.style.FlexDirection;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
 
@@ -64,7 +64,7 @@ import java.util.Set;
 
 /** Editor for {@code animation} tracks: a bound-target header (root excluded), a keyframe-dot lane,
  *  and an expandable property list + interactive bezier curve editor. */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class AnimationTrackEditor extends TrackEditor {
     private static final ColorPattern[] CHANNEL_COLORS = {ColorPattern.RED, ColorPattern.GREEN, ColorPattern.BLUE};
 

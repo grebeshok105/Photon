@@ -14,7 +14,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.util.FastColor;
-import net.neoforged.neoforge.common.util.INBTSerializable;
+import com.lowdragmc.lowdraglib2.utils.INBTSerializable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

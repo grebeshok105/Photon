@@ -1,13 +1,14 @@
 pluginManagement {
     repositories {
-        mavenLocal()
+        // aliyun first: this box gets rate-limited (429) by Maven Central
+        maven { url = 'https://maven.aliyun.com/repository/central' }
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+        mavenCentral()
         gradlePluginPortal()
-        maven { url = 'https://maven.neoforged.net/releases' }
     }
 }
 
-plugins {
-    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
-}
-
-rootProject.name = "${mod_id}-neoforge"
+rootProject.name = 'photon-fabric'

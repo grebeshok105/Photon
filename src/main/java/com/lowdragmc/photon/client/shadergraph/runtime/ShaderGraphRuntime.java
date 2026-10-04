@@ -16,8 +16,8 @@ import com.lowdragmc.photon.gui.editor.resource.PhotonShaderFunctionGraphResourc
 import com.lowdragmc.photon.gui.editor.resource.ShaderGraphResource;
 import lombok.Getter;
 import net.minecraft.nbt.CompoundTag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -38,7 +38,7 @@ import java.util.Set;
  * recompile whose {@code contentHash} is unchanged still refreshes baked defaults (materials re-bake their
  * value stores off the new entry). Render thread only.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class ShaderGraphRuntime {
 
     private static final Map<IResourcePath, Entry> CACHE = new HashMap<>();

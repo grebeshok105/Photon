@@ -20,9 +20,8 @@ import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.model.data.ModelData;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,7 +35,7 @@ import java.util.Objects;
  * into centered space and per-face shade factors are baked per quad (the {@code shade} toggle is
  * applied at consumption time).
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @LDLRegisterClient(name = "json_model", registry = "photon:model_source")
 public class JsonModelSource implements IModelSource {
     @Getter
@@ -100,7 +99,7 @@ public class JsonModelSource implements IModelSource {
                 case NORTH, SOUTH -> 0.8F;
                 case WEST, EAST -> 0.6F;
             };
-            for (var quad : bakedModel.getQuads(null, side, random, ModelData.EMPTY, null)) {
+            for (var quad : bakedModel.getQuads(null, side, random)) {
                 quads.add(Pair.of(quad, brightness));
             }
         }
@@ -108,7 +107,7 @@ public class JsonModelSource implements IModelSource {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void buildConfigurator(ConfiguratorGroup father) {
         IModelSource.super.buildConfigurator(father);
         var buttonConfigurator = new Configurator();

@@ -6,8 +6,8 @@ import com.mojang.blaze3d.shaders.Uniform;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Matrix4f;
 import com.lowdragmc.lowdraglib2.gui.ui.rendering.UISurface;
 
@@ -34,7 +34,7 @@ import com.lowdragmc.lowdraglib2.gui.ui.rendering.UISurface;
  * renders after the level in the same frame, so a single slot would leave whichever ran last in place — the
  * per-context split makes dispatch order irrelevant.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class PostFXCamera {
 
     private static final Snapshot WORLD = new Snapshot();

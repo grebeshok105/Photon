@@ -1,8 +1,8 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model;
 
 import com.lowdragmc.photon.client.AutoCloseCleaner;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.system.MemoryUtil;
 
@@ -16,7 +16,7 @@ import static org.lwjgl.opengl.GL31.*;
  *
  * <p>Uploaded once and then read-only, so a swarm costs one texture and no per-frame work at all.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class VertexAnimation {
 
     private static final class Resource implements AutoCloseable {

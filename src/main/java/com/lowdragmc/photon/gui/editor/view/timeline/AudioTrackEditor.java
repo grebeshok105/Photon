@@ -31,8 +31,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -43,7 +43,7 @@ import java.util.List;
  * the inspector exposes sound / volume / pitch / category / attenuation / loop-length, and the clip
  * draws loop sub-divisions so the user sees how many times the sound repeats.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class AudioTrackEditor extends ClipTrackEditor {
 
     @Override

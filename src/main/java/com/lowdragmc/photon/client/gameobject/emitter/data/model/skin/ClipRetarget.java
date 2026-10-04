@@ -1,7 +1,7 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model.skin;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.List;
  * for a different rig will match few names and mostly disappear, which {@link Result#droppedChannels()}
  * is there to report.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class ClipRetarget {
 
     /** @param matchedJoints how many of the source's joints exist in the target, for diagnosing a mismatch */

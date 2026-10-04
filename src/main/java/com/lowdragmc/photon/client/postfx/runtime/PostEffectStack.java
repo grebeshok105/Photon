@@ -8,8 +8,8 @@ import com.lowdragmc.photon.client.postfx.shadergraph.runtime.FullscreenGraphRun
 import com.lowdragmc.photon.client.postprocessing.PhotonPostProcessing;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -38,7 +38,7 @@ import java.util.Map;
  * Unconsumed requests are dropped at the frame boundary ({@link #onFrameEnd}) — a source that stops
  * submitting stops the effect next frame. Render thread only.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class PostEffectStack {
 
     public static final PostEffectStack GLOBAL = new PostEffectStack();

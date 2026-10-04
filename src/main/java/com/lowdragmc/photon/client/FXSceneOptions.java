@@ -1,8 +1,8 @@
 package com.lowdragmc.photon.client;
 
 import com.lowdragmc.photon.gui.editor.view.scene.SceneView;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * The per-scene render switches a {@link PhotonParticleManager} reads every frame.
@@ -18,7 +18,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * Photon's editor, so the switches are an interface with sensible defaults rather than a
  * hard reference to the editor view. Use {@link #DEFAULT} for "just render it normally".
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public interface FXSceneOptions {
 
     /** Plain shaded draw, bloom and post effects on, no mask debug view. */

@@ -8,13 +8,13 @@ import com.lowdragmc.photon.client.compat.iris.IrisCompat;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import lombok.Getter;
 import net.minecraft.client.renderer.ShaderInstance;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.event.RegisterShadersEvent;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.CoreShaderRegistrationCallback;
 
 import java.io.IOException;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class PhotonShaders {
     private static Shader CATMULL_ROM;
     private static ShaderProgram CATMULL_ROM_PROGRAM;
@@ -61,7 +61,7 @@ public class PhotonShaders {
         return CATMULL_ROM_PROGRAM;
     }
 
-    public static void registerShaders(RegisterShadersEvent registerShadersEvent) {
+    public static void registerShaders(CoreShaderRegistrationCallback.RegistrationContext context) {
         // fires on every resource reload — drop lazily-loaded custom pass shaders so they re-resolve,
         // and compact the mask-group id table (ids are per-frame-resolved, safe to reassign)
         com.lowdragmc.photon.client.postfx.runtime.CustomShaderPass.clearAll();
@@ -71,26 +71,13 @@ public class PhotonShaders {
         // a resource reload can follow a shader-pack reload, which recreates every Iris render
         // target — drop the resolved layout and the composite framebuffer with it
         IrisCompat.invalidate();
-        var resourceProvider = registerShadersEvent.getResourceProvider();
-        try {
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("hdr_particle"), DefaultVertexFormat.BLOCK),
-                    shaderInstance -> HDRParticleShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("sprite_hdr_particle"), DefaultVertexFormat.BLOCK),
-                    shaderInstance -> spriteHDRParticleShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("pixel_hdr_particle"), DefaultVertexFormat.BLOCK),
-                    shaderInstance -> pixelHDRParticleShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("bright_pass"), DefaultVertexFormat.POSITION),
-                    shaderInstance -> brightPassShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("down_sampling"), DefaultVertexFormat.POSITION),
-                    shaderInstance -> downSamplingShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("up_sampling"), DefaultVertexFormat.POSITION),
-                    shaderInstance -> upSamplingShader = shaderInstance);
+                try {
+            context.register(Photon.id("hdr_particle"), DefaultVertexFormat.BLOCK, shaderInstance -> HDRParticleShader = shaderInstance);
+            context.register(Photon.id("sprite_hdr_particle"), DefaultVertexFormat.BLOCK, shaderInstance -> spriteHDRParticleShader = shaderInstance);
+            context.register(Photon.id("pixel_hdr_particle"), DefaultVertexFormat.BLOCK, shaderInstance -> pixelHDRParticleShader = shaderInstance);
+            context.register(Photon.id("bright_pass"), DefaultVertexFormat.POSITION, shaderInstance -> brightPassShader = shaderInstance);
+            context.register(Photon.id("down_sampling"), DefaultVertexFormat.POSITION, shaderInstance -> downSamplingShader = shaderInstance);
+            context.register(Photon.id("up_sampling"), DefaultVertexFormat.POSITION, shaderInstance -> upSamplingShader = shaderInstance);
 //            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
 //                            Photon.id("separable_blur"), DefaultVertexFormat.POSITION),
 //                    shaderInstance -> separableBlurShader = shaderInstance);
@@ -100,21 +87,11 @@ public class PhotonShaders {
 //            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
 //                            Photon.id("bloom_scatter_pass"), DefaultVertexFormat.POSITION),
 //                    shaderInstance -> bloomScatterPassShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("bloom_final_scatter_pass"), DefaultVertexFormat.POSITION),
-                    shaderInstance -> bloomFinalScatterPassShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("weight_mix"), DefaultVertexFormat.POSITION),
-                    shaderInstance -> weightMixShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("weight_mask_mix"), DefaultVertexFormat.POSITION),
-                    shaderInstance -> weightMaskMixShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("mask_union"), DefaultVertexFormat.POSITION),
-                    shaderInstance -> maskUnionShader = shaderInstance);
-            registerShadersEvent.registerShader(new ShaderInstance(resourceProvider,
-                            Photon.id("iris_composite"), DefaultVertexFormat.POSITION),
-                    shaderInstance -> irisCompositeShader = shaderInstance);
+            context.register(Photon.id("bloom_final_scatter_pass"), DefaultVertexFormat.POSITION, shaderInstance -> bloomFinalScatterPassShader = shaderInstance);
+            context.register(Photon.id("weight_mix"), DefaultVertexFormat.POSITION, shaderInstance -> weightMixShader = shaderInstance);
+            context.register(Photon.id("weight_mask_mix"), DefaultVertexFormat.POSITION, shaderInstance -> weightMaskMixShader = shaderInstance);
+            context.register(Photon.id("mask_union"), DefaultVertexFormat.POSITION, shaderInstance -> maskUnionShader = shaderInstance);
+            context.register(Photon.id("iris_composite"), DefaultVertexFormat.POSITION, shaderInstance -> irisCompositeShader = shaderInstance);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -18,8 +18,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -40,7 +40,7 @@ import java.util.Set;
  * <p>Caller contract: post render state is already set ({@link PostEffectStack} owns it for the chain);
  * the returned target is pool-owned by the CALLER (release it or hand it on). Render thread only.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class RenderGraphExecutor {
 
     /** Effect paths whose failure was already logged — cleared when the source entry changes. */

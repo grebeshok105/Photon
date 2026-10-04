@@ -8,8 +8,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferUploader;
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
@@ -32,7 +32,7 @@ import org.lwjgl.opengl.GL14;
  * <p>Alpha is masked out of the write so the destination keeps its own — Iris gbuffers carry meaning
  * in that channel, and MC's main target is already opaque. Render thread only.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class SceneBlit {
 
     private SceneBlit() {}

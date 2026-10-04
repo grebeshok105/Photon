@@ -7,8 +7,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStreamReader;
@@ -31,7 +31,7 @@ import java.util.Map;
  * reload (hooked from {@code PhotonShaders.registerShaders}). Failures memo-log once. Render
  * thread only.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class CustomShaderPass {
 
     /** Uniforms the executor manages — never exposed as pass ports. (The {@code matrix4x4} ones are already
@@ -145,7 +145,7 @@ public final class CustomShaderPass {
         ShaderInstance shader = null;
         try {
             shader = new ShaderInstance(Minecraft.getInstance().getResourceManager(),
-                    ResourceLocation.parse(location), DefaultVertexFormat.POSITION);
+                    location, DefaultVertexFormat.POSITION);
         } catch (Exception e) {
             Photon.LOGGER.error("custom pass shader '{}' failed to load: {}", location, e.toString());
         }

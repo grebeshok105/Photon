@@ -1,7 +1,7 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * Which axes an authored per-particle vector is given in — Unity's "Space" dropdown, and deliberately
@@ -17,7 +17,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  *
  * <p>Constant names must stay stable: they are persisted by name.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public enum ValueSpace {
     Local,
     World

@@ -1,14 +1,13 @@
 package com.lowdragmc.photon.client.compat.iris;
 
 import net.minecraft.network.chat.Component;
-import net.neoforged.neoforge.common.TranslatableEnum;
 
 import java.util.Locale;
 
 /**
  * How Photon hands its finished FX image back to the shader pack.
  */
-public enum IrisCompositeMode implements TranslatableEnum {
+public enum IrisCompositeMode {
     /**
      * Let the resolver classify the pack. Only ever a <i>configured</i> value — resolution never
      * returns it.
@@ -45,7 +44,6 @@ public enum IrisCompositeMode implements TranslatableEnum {
     DISABLED;
 
     /** Readable name in NeoForge's config screen, which otherwise prints the raw constant. */
-    @Override
     public Component getTranslatedName() {
         return Component.translatable("photon.enum.iris_composite_mode." + name().toLowerCase(Locale.ROOT));
     }

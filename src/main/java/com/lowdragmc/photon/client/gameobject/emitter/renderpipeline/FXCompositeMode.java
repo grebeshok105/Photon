@@ -2,7 +2,6 @@ package com.lowdragmc.photon.client.gameobject.emitter.renderpipeline;
 
 import com.lowdragmc.photon.PhotonConfig;
 import net.minecraft.network.chat.Component;
-import net.neoforged.neoforge.common.TranslatableEnum;
 
 import java.util.Locale;
 
@@ -23,7 +22,7 @@ import java.util.Locale;
  *       contains it.</li>
  * </ul>
  */
-public enum FXCompositeMode implements TranslatableEnum {
+public enum FXCompositeMode {
     /**
      * Per-emitter only: use whatever {@link PhotonConfig#fxCompositeMode} says. Never a resolved
      * value.
@@ -50,7 +49,6 @@ public enum FXCompositeMode implements TranslatableEnum {
     /** Readable name in NeoForge's config screen, which otherwise prints the raw constant. The
      *  editor's own selector is untranslated by design ({@code EnumAccessor.getEnumName}), like every
      *  other Photon enum. */
-    @Override
     public Component getTranslatedName() {
         return Component.translatable("photon.enum.fx_composite_mode." + name().toLowerCase(Locale.ROOT));
     }

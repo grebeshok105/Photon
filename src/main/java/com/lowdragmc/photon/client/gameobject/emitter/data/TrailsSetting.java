@@ -29,8 +29,8 @@ import lombok.Setter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector4f;
 
@@ -41,7 +41,7 @@ import java.util.HashMap;
  * @date 2023/6/1
  * @implNote TrailsSetting
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class TrailsSetting extends ToggleGroup {
     public enum TrailType {
         TRAIL,

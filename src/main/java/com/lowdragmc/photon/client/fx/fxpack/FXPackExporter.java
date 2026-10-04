@@ -19,8 +19,8 @@ import net.minecraft.nbt.NbtIo;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.ByteArrayOutputStream;
@@ -72,7 +72,7 @@ import java.util.Set;
  * nested render_graph→fullscreen_graph references) travel as {@code file(assets/...)} strings and
  * are covered by mark's generic pattern.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class FXPackExporter {
 
     /** The namespace packed library files are exported under. */

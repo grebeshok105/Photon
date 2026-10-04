@@ -28,10 +28,10 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.commands.arguments.coordinates.Vec3Argument;
 import net.minecraft.world.entity.Entity;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.network.PacketDistributor;
-import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -161,7 +161,8 @@ public class EntityEffectCommand extends EffectCommand {
         if (autoRotate) {
             command.setAutoRotate(AutoRotateType.getValue(context, "auto rotate"));
         }
-        PacketDistributor.sendToAllPlayers(command);
+        context.getSource().getServer().getPlayerList().getPlayers()
+                .forEach(player -> ServerPlayNetworking.send(player, command));
         return Command.SINGLE_SUCCESS;
     }
 
@@ -191,15 +192,15 @@ public class EntityEffectCommand extends EffectCommand {
         return packet;
     }
 
-    public static void execute(EntityEffectCommand packet, IPayloadContext context) {
+    public static void execute(EntityEffectCommand packet, ClientPlayNetworking.Context context) {
         if (LDLib2.isClient()) {
             Client.execute(packet, context);
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     private static class Client {
-        public static void execute(EntityEffectCommand packet, IPayloadContext context) {
+        public static void execute(EntityEffectCommand packet, ClientPlayNetworking.Context context) {
             var level = Minecraft.getInstance().level;
             if (level != null) {
                 var fx = FXHelper.getFX(packet.location);

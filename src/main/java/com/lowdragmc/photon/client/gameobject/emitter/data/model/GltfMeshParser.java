@@ -11,8 +11,8 @@ import com.lowdragmc.photon.client.gameobject.emitter.data.model.skin.SkinnedMod
 import it.unimi.dsi.fastutil.floats.FloatArrayList;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
@@ -62,7 +62,7 @@ import java.util.List;
  * convention, so no axis swizzle is applied. glTF's UV origin is already top-left like Minecraft's, so
  * unlike OBJ no V flip is needed — {@code flipV} exists only to rescue an odd export.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class GltfMeshParser {
 
     private static final int GLB_MAGIC = 0x46546C67;      // "glTF", little-endian

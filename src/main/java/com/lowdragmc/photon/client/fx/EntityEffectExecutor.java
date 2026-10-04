@@ -1,8 +1,8 @@
 package com.lowdragmc.photon.client.fx;
 
 import com.lowdragmc.photon.client.gameobject.IFXObject;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import org.joml.Math;
@@ -16,7 +16,7 @@ import java.util.*;
  * (plus the configured offset/rotation, optionally auto-rotated to the entity's facing) and the FX
  * is destroyed when the entity dies. All accesses run on the client tick/render thread.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class EntityEffectExecutor extends FXEffectExecutor {
     public enum AutoRotate {
         NONE,

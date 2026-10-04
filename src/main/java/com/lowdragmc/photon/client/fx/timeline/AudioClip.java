@@ -4,8 +4,8 @@ import com.lowdragmc.photon.client.gameobject.emitter.data.number.NumberFunction
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * A {@link Clip} on an {@link AudioTrack}: plays a registered {@code SoundEvent} for the clip's span.
@@ -22,7 +22,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * {@link PostProcessClip}'s weight — a curve over the clip IS the fade / sweep envelope. The sound
  * engine re-reads both from a tickable instance every tick, so they take effect live.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class AudioClip extends Clip {
     /** Default sound of a freshly created clip (a short, always-present vanilla sound). */
     public static final ResourceLocation DEFAULT_SOUND = SoundEvents.UI_BUTTON_CLICK.value().getLocation();

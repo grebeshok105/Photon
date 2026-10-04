@@ -39,4 +39,15 @@ public class GameRendererMixin {
     private void photon$afterLevelRender(DeltaTracker deltaTracker, CallbackInfo ci) {
         PhotonPostFX.onLevelRenderComplete();
     }
+
+    /**
+     * Neoforge's {@code RenderFrameEvent.Post}: fires once per render frame (in-world and in the
+     * editor screen alike) — the post-effect system's frame boundary: recycle outputs, drop stale
+     * requests, advance the pool clock.
+     */
+    @Inject(method = "render(Lnet/minecraft/client/DeltaTracker;Z)V",
+            at = @At("RETURN"))
+    private void photon$onFrameEnd(DeltaTracker deltaTracker, boolean tick, CallbackInfo ci) {
+        PhotonPostFX.onFrameEnd();
+    }
 }

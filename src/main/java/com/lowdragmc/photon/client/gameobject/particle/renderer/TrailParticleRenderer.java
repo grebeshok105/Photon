@@ -6,8 +6,8 @@ import com.lowdragmc.photon.client.gameobject.particle.TrailParticle;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.ShaderInstance;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
@@ -24,7 +24,7 @@ import java.util.Collection;
  * partial-tick lerp); the ribbon expansion itself is mirrored in the TRAIL_INSTANCE branch of
  * photon:particle.glsl. Render-thread only (scratch state).
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @ParametersAreNonnullByDefault
 public class TrailParticleRenderer {
 

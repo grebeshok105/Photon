@@ -1,15 +1,15 @@
 package com.lowdragmc.photon.client.fx.timeline;
 
 import net.minecraft.nbt.CompoundTag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * A single point-event on a {@link SignalTrack}: a {@code name} + arbitrary {@code data} fired when the
  * master clock reaches {@link #time}. Multiple signals may share a name. The owning track's display name
  * is the "channel"; see {@link TimelinePlayer} for dispatch and {@link PhotonSignals} for listeners.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class Signal {
     private double time;
     private String name = "signal";

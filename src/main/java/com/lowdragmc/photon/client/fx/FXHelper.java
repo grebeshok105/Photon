@@ -5,8 +5,8 @@ import com.lowdragmc.photon.Photon;
 import com.lowdragmc.photon.client.gameobject.emitter.data.fixer.PhotonFXProjectDataFixer;
 import com.lowdragmc.photon.gui.editor.FXProject;
 import net.minecraft.nbt.NbtAccounter;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
@@ -29,9 +29,14 @@ import java.util.concurrent.ConcurrentHashMap;
  * The id passed to {@link #getFX} omits the {@code fx/} prefix and {@code .fx} suffix:
  * {@code photon:example} → {@code assets/photon/fx/example.fx}.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @ParametersAreNonnullByDefault
 public class FXHelper {
+    /** neoforge's {@code AABB.INFINITE} — a cull-disabling box that covers everything. */
+    public static final net.minecraft.world.phys.AABB INFINITE_AABB = new net.minecraft.world.phys.AABB(
+            -Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE,
+            Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
+
     // concurrent: sub-emitter spawns may query the cache while other threads do (never mutate mid-load;
     // loadFX does not re-enter getFX, so computeIfAbsent cannot recurse)
     private final static Map<ResourceLocation, FX> CACHE = new ConcurrentHashMap<>();

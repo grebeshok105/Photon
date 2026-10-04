@@ -14,8 +14,8 @@ import com.lowdragmc.photon.client.postfx.graph.SizeSpec;
 import com.lowdragmc.photon.client.postfx.runtime.CustomShaderPass;
 import com.lowdragmc.photon.gui.editor.resource.FullscreenShaderGraphResource;
 import net.minecraft.client.resources.language.I18n;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +27,7 @@ import java.util.Arrays;
  * ({@link PassSize} / {@link PassSource}), so every row writes back through the same
  * {@link IFieldValueConfigurable}.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class PassOptionConfigurators {
 
     private PassOptionConfigurators() {}

@@ -22,8 +22,8 @@ import dev.vfyjxf.taffy.style.AlignItems;
 import dev.vfyjxf.taffy.style.FlexDirection;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ import java.util.List;
  * <b>non-interactive</b> preview of the children's clips / keyframes / signals. Height is auto (no resize
  * grip). Tracks are added by dragging a header into the group (host) or via the "add child track" menu.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class TrackGroupEditor extends TrackEditor {
 
     public static class TrackGroupUIState extends TrackUIState {

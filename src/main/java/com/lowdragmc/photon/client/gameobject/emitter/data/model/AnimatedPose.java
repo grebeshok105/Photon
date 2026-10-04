@@ -3,8 +3,8 @@ package com.lowdragmc.photon.client.gameobject.emitter.data.model;
 import com.lowdragmc.photon.client.gameobject.emitter.data.model.skin.AnimationClip;
 import com.lowdragmc.photon.client.gameobject.emitter.data.model.skin.SkinDeformer;
 import com.lowdragmc.photon.client.gameobject.emitter.data.model.skin.SkinnedModel;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * emitter owns its own source, so five emitters playing one clip would otherwise be five identical
  * deformations a frame.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 final class AnimatedPose {
 
     /**

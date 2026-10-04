@@ -12,8 +12,8 @@ import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleRenderType;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import org.joml.Matrix4f;
 
@@ -24,7 +24,7 @@ import java.util.Queue;
 import java.util.function.Predicate;
 import com.lowdragmc.lowdraglib2.gui.ui.rendering.UISurface;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class PhotonParticleManager extends ParticleManager implements ParticleTickHost {
     /** The per-frame render switches; {@link FXSceneOptions#DEFAULT} for an embedded preview. */
     public final FXSceneOptions options;

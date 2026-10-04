@@ -6,8 +6,8 @@ import com.lowdragmc.photon.client.gameobject.RuntimeValue;
 import com.lowdragmc.photon.client.gameobject.emitter.data.ToggleGroup;
 import lombok.Getter;
 import lombok.Setter;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Vector3f;
 
 /**
@@ -15,7 +15,7 @@ import org.joml.Vector3f;
  * @date 2023/5/31
  * @implNote PhysicsSetting
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @Setter
 @Getter
 public class AraPhysicsSetting extends ToggleGroup {

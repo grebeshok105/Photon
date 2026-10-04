@@ -19,10 +19,10 @@ import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.network.PacketDistributor;
-import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -68,7 +68,8 @@ public class RemoveEntityEffectCommand implements CustomPacketPayload {
         if (location) {
             command.setLocation(ResourceLocationArgument.getId(context, "location"));
         }
-        PacketDistributor.sendToAllPlayers(command);
+        context.getSource().getServer().getPlayerList().getPlayers()
+                .forEach(player -> ServerPlayNetworking.send(player, command));
         return Command.SINGLE_SUCCESS;
     }
 
@@ -101,15 +102,15 @@ public class RemoveEntityEffectCommand implements CustomPacketPayload {
         return packet;
     }
 
-    public static void execute(RemoveEntityEffectCommand packet, IPayloadContext context) {
+    public static void execute(RemoveEntityEffectCommand packet, ClientPlayNetworking.Context context) {
         if (LDLib2.isClient()) {
             Client.execute(packet, context);
         }
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     private static class Client {
-        public static void execute(RemoveEntityEffectCommand packet, IPayloadContext context) {
+        public static void execute(RemoveEntityEffectCommand packet, ClientPlayNetworking.Context context) {
             for (var id : packet.ids) {
                 var entity = context.player().level().getEntity(id);
                 if (entity != null) {

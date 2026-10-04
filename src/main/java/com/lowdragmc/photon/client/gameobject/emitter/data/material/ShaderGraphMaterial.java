@@ -38,8 +38,8 @@ import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2f;
@@ -65,7 +65,7 @@ import java.util.Optional;
  * Scene color/depth read the render pipeline's scene sampler (Iris-compatible), never KilaGraph's own
  * capture.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @ParametersAreNonnullByDefault
 @LDLRegisterClient(name = "shader_graph", registry = "photon:material")
 public class ShaderGraphMaterial extends ShaderInstanceMaterial {

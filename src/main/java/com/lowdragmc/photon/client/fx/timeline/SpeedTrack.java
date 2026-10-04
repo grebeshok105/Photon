@@ -1,8 +1,8 @@
 package com.lowdragmc.photon.client.fx.timeline;
 
 import com.lowdragmc.photon.client.fx.timeline.property.SpeedPropertyType;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * Speed track. Like an {@link AnimationTrack} it binds one target and keyframes a curve, but the single
@@ -11,7 +11,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * applies it to the bound subtree (and excludes it from the transform animation pass). Reusing
  * {@code AnimationTrack} gives the curve serialization + editor for free.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class SpeedTrack extends AnimationTrack {
 
     public SpeedTrack() {

@@ -4,6 +4,7 @@ import com.lowdragmc.lowdraglib2.configurator.annotation.Configurable;
 import com.lowdragmc.lowdraglib2.editor.ui.sceneeditor.sceneobject.IScene;
 import com.lowdragmc.lowdraglib2.math.Transform;
 import com.lowdragmc.photon.Photon;
+import com.lowdragmc.photon.client.fx.FXHelper;
 import com.lowdragmc.photon.client.fx.IEffectExecutor;
 import com.lowdragmc.photon.client.fx.ParticleTickHost;
 import com.lowdragmc.photon.client.gameobject.emitter.renderpipeline.RenderPassPipeline;
@@ -15,8 +16,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.world.phys.AABB;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Camera;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleRenderType;
@@ -31,7 +32,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @ParametersAreNonnullByDefault
 @Getter
 public abstract class FXObject extends Particle implements IFXObject {
@@ -307,10 +308,11 @@ public abstract class FXObject extends Particle implements IFXObject {
         return NO_RENDER_RENDER_TYPE;
     }
 
-    @Override
+    // neoforge's Particle#getRenderBoundingBox hook; on fabric it stays an internal query
+    // (SceneView's cull path is the only consumer — photon's own pipeline, not the level renderer)
     @Nonnull
     public AABB getRenderBoundingBox(float partialTicks) {
-        return AABB.INFINITE;
+        return FXHelper.INFINITE_AABB;
     }
 
     public static ParticleRenderType NO_RENDER_RENDER_TYPE = new ParticleRenderType() {
@@ -321,7 +323,8 @@ public abstract class FXObject extends Particle implements IFXObject {
             return pipeline;
         }
 
-        @Override
+        // neoforge adds isTranslucent() to ParticleRenderType; kept as a plain method for
+        // photon-internal callers — the interface itself does not declare it on fabric
         public boolean isTranslucent() {
             return false;
         }

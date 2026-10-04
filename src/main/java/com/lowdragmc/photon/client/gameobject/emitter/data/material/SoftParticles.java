@@ -7,8 +7,8 @@ import com.lowdragmc.photon.client.gameobject.emitter.renderpipeline.RenderPassP
 import com.lowdragmc.photon.client.shadergraph.PhotonShaderCompiler;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.renderer.ShaderInstance;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Matrix4f;
 
 /**
@@ -19,7 +19,7 @@ import org.joml.Matrix4f;
  * carries one of these. Top-level rather than nested because {@link TextureMaterial} and
  * {@link SpriteMaterial} are siblings and {@link #apply} is not safe to keep two copies of.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class SoftParticles extends ToggleGroup {
 
     public enum Fade {

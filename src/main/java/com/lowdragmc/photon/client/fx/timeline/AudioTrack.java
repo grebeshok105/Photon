@@ -6,8 +6,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.Locale;
 
@@ -17,7 +17,7 @@ import java.util.Locale;
  * The base {@link Track#targetId} is optional here — when bound it provides a world position for
  * 3D/attenuated playback; otherwise the sound plays non-positional (at the listener).
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class AudioTrack extends Track {
 
     public AudioTrack() {

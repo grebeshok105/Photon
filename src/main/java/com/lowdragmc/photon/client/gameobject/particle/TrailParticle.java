@@ -10,8 +10,8 @@ import com.lowdragmc.photon.client.gameobject.emitter.trail.TrailRuntime;
 import it.unimi.dsi.fastutil.floats.Float2ObjectFunction;
 import lombok.Getter;
 import lombok.Setter;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -29,7 +29,7 @@ import java.util.function.Supplier;
  * @date 2022/05/30
  * @implNote TrailParticle
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class TrailParticle implements IParticle {
     public enum UVMode {
         Stretch,

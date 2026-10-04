@@ -1,8 +1,8 @@
 package com.lowdragmc.photon.client.postfx.runtime;
 
 import com.lowdragmc.photon.Photon;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import java.util.Map;
  * assignment order doesn't matter across sessions. Filtering by a name nothing wrote simply
  * matches nowhere.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class MaskGroups {
 
     /** The group an empty/blank writer name falls back to. */

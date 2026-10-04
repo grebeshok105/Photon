@@ -10,8 +10,8 @@ import com.lowdragmc.photon.client.gameobject.particle.IParticle;
 import org.joml.Vector3f;
 import lombok.Getter;
 import lombok.Setter;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 /**
  * Pure-data size-over-lifetime config; value-use behaviour lives on the co-located {@link Runtime}.
@@ -19,7 +19,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * @author KilaBash
  * @date 2023/5/30
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @Setter
 @Getter
 public class SizeOverLifetimeSetting extends ToggleGroup {

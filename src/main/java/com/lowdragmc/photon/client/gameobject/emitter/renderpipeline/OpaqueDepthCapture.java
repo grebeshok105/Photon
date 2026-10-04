@@ -6,8 +6,8 @@ import com.lowdragmc.photon.client.postfx.runtime.FormatTarget;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
@@ -31,7 +31,7 @@ import com.lowdragmc.lowdraglib2.gui.ui.rendering.UISurface;
  * author can use depth writes for FX-vs-FX occlusion without the writes leaking into the clouds,
  * weather and hand rendered after us.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class OpaqueDepthCapture {
 
     /** Only the depth attachment is ever read. The colour buffer is dead weight that {@code

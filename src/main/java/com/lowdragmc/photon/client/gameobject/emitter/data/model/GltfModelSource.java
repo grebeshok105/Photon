@@ -15,8 +15,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.LoadingOverlay;
 import com.lowdragmc.photon.client.gameobject.emitter.data.model.skin.SkinnedModel;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
@@ -32,7 +32,7 @@ import java.util.Objects;
  * exported alongside a baked normal map keeps the exact frame the map was baked against instead of one
  * reconstructed from UVs. Turn on the emitter's {@code Tangent} renderer setting to upload them.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @LDLRegisterClient(name = "gltf_model", registry = "photon:model_source")
 public class GltfModelSource implements IModelSource {
     @Getter
@@ -117,7 +117,7 @@ public class GltfModelSource implements IModelSource {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void buildConfigurator(ConfiguratorGroup father) {
         IModelSource.super.buildConfigurator(father);
         var buttonConfigurator = new Configurator();

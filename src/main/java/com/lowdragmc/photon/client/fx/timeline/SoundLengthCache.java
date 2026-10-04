@@ -6,8 +6,8 @@ import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.client.sounds.JOrbisAudioStream;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * async decode (via Minecraft's own {@link JOrbisAudioStream}) and returns 0 until it resolves; a
  * sound that can't be measured (missing / event-reference / decode error) caches 0 and is not retried.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class SoundLengthCache {
     private static final Map<ResourceLocation, Double> LENGTHS = new ConcurrentHashMap<>();
     private static final Set<ResourceLocation> PENDING = ConcurrentHashMap.newKeySet();

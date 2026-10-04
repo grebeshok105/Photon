@@ -5,9 +5,8 @@ import it.unimi.dsi.fastutil.booleans.BooleanArrayList;
 import it.unimi.dsi.fastutil.floats.FloatArrayList;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.model.IQuadTransformer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
@@ -32,8 +31,14 @@ import java.util.function.Supplier;
  * <p>Positions are in centered model space — a JSON block model's 0..1 cube is -0.5..0.5, OBJ and
  * glTF are raw author space. Consumers compare instances by identity to detect invalidation.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class PhotonMesh {
+    // Vanilla BakedQuad vertex layout (DefaultVertexFormat.BLOCK): pos(3), color(1), uv(2),
+    // light(1), normal(1) = 8 ints per vertex — mirrors neoforge IQuadTransformer's constants.
+    private static final int STRIDE = 8;
+    private static final int POSITION = 0;
+    private static final int UV0 = 4;
+    private static final int NORMAL = 7;
     /** Floats per vertex in {@link #geometry()}: position xyz + normal xyz. */
     public static final int FLOATS_PER_GEOMETRY = 6;
     /** Floats per vertex in {@link #attributes()}: u, v, per-face shade brightness. */
@@ -204,17 +209,17 @@ public final class PhotonMesh {
         for (var pair : quads) {
             var quad = pair.getLeft();
             int[] data = quad.getVertices();
-            int points = Math.min(data.length / IQuadTransformer.STRIDE, 4);
+            int points = Math.min(data.length / STRIDE, 4);
             if (points < 3) continue;
             for (int k = 0; k < points; k++) {
-                int off = k * IQuadTransformer.STRIDE;
+                int off = k * STRIDE;
                 var corner = corners[k];
-                corner[0] = Float.intBitsToFloat(data[off + IQuadTransformer.POSITION]) - 0.5f;
-                corner[1] = Float.intBitsToFloat(data[off + IQuadTransformer.POSITION + 1]) - 0.5f;
-                corner[2] = Float.intBitsToFloat(data[off + IQuadTransformer.POSITION + 2]) - 0.5f;
-                corner[3] = Float.intBitsToFloat(data[off + IQuadTransformer.UV0]);
-                corner[4] = Float.intBitsToFloat(data[off + IQuadTransformer.UV0 + 1]);
-                int packedNormal = data[off + IQuadTransformer.NORMAL];
+                corner[0] = Float.intBitsToFloat(data[off + POSITION]) - 0.5f;
+                corner[1] = Float.intBitsToFloat(data[off + POSITION + 1]) - 0.5f;
+                corner[2] = Float.intBitsToFloat(data[off + POSITION + 2]) - 0.5f;
+                corner[3] = Float.intBitsToFloat(data[off + UV0]);
+                corner[4] = Float.intBitsToFloat(data[off + UV0 + 1]);
+                int packedNormal = data[off + NORMAL];
                 corner[5] = ((byte) packedNormal) / 127.0f;
                 corner[6] = ((byte) (packedNormal >> 8)) / 127.0f;
                 corner[7] = ((byte) (packedNormal >> 16)) / 127.0f;

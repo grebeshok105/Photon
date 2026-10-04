@@ -1,8 +1,8 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model;
 
 import it.unimi.dsi.fastutil.floats.FloatArrayList;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import java.util.Map;
  * <p>⚠️ One tangent per vertex, so a vertex shared by two mirrored UV islands gets one frame. Splitting
  * it is the exporter's job — glTF stores one {@code TANGENT} per vertex too.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 final class MeshTangents {
 
     /** Floats per vertex in the generated array: tangent xyz + handedness. */

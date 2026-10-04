@@ -23,8 +23,8 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL11;
 
@@ -36,7 +36,7 @@ import java.util.List;
  * whose External Forces module is enabled. Supports a shaped influence volume with range falloff,
  * directional force, gravity toward a focus point, vortex rotation, and drag.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @ParametersAreNonnullByDefault
 public class ForceFieldObject extends FXObject {
     public static final IGuiTexture ICON = Icons.icon(Photon.MOD_ID, "force_field");

@@ -13,8 +13,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Vector2f;
 
 import javax.annotation.Nullable;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * carries a single locked {@code speed} property (no add/remove), allows binding root (global slow-mo),
  * and has no record toggle. The curve drives the target's playback speed; see {@code SpeedTrack}.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class SpeedTrackEditor extends AnimationTrackEditor {
 
     @Override

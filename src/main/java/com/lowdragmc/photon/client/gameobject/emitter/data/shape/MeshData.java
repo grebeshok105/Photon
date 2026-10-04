@@ -24,9 +24,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.INBTSerializable;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import com.lowdragmc.lowdraglib2.utils.INBTSerializable;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3f;
 import lombok.Getter;
@@ -250,7 +250,7 @@ public final class MeshData implements INBTSerializable<CompoundTag>, IConfigura
         clearDerived();
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public Scene createPreviewScene() {
         var level = new TrackedDummyWorld();
         level.addBlock(BlockPos.ZERO, BlockInfo.fromBlock(Blocks.AIR));
@@ -274,7 +274,7 @@ public final class MeshData implements INBTSerializable<CompoundTag>, IConfigura
         return scene;
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void drawLineFrames(PoseStack poseStack) {
         var edges = getEdges();
         if (edges.isEmpty()) return;
@@ -313,7 +313,7 @@ public final class MeshData implements INBTSerializable<CompoundTag>, IConfigura
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public void buildConfigurator(ConfiguratorGroup father) {
         father.addConfigurators(new Configurator("ldlib.gui.editor.group.preview").addChild(createPreviewScene()));
         father.addConfigurator(new ConfiguratorSelectorConfigurator<>(

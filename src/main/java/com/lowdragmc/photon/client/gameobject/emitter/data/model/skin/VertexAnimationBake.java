@@ -1,8 +1,8 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model.skin;
 
 import com.lowdragmc.photon.client.gameobject.emitter.data.model.PhotonMesh;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  * costs nothing: that channel was padding. Worst case is under a sixteenth of a degree, against the
  * ~1.5 degrees of the byte normals vanilla ships.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class VertexAnimationBake {
 
     /** RGBA32F texels: xyz = position, w = the packed normal. */

@@ -9,8 +9,8 @@ import com.lowdragmc.photon.client.postfx.runtime.PostEffectStack;
 import com.lowdragmc.photon.client.postfx.runtime.PostFXTargetPool;
 import com.lowdragmc.photon.client.postfx.runtime.SceneBlit;
 import net.minecraft.client.Minecraft;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
@@ -23,7 +23,7 @@ import com.lowdragmc.lowdraglib2.gui.ui.rendering.UISurface;
  *
  * <p>Also owns the frame boundary hook and the {@code /photonfx} debug loop.</p>
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class PhotonPostFX {
 
     private record TestEffect(IResourcePath path, float weight) {}

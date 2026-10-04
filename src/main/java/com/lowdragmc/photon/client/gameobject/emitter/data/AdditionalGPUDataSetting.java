@@ -25,8 +25,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -70,7 +70,7 @@ import static com.lowdragmc.photon.client.gameobject.particle.renderer.GlInstanc
  * accessor stays config-independent. The custom TBO is only uploaded when a shadergraph material on the
  * pass actually reads custom data ({@link #hasCustomRecord()}).
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public abstract class AdditionalGPUDataSetting extends ToggleGroup {
 
     /** Max user custom-data streams per emitter — mirrored by {@code PHOTON_CUSTOM_TEXELS} in particle.glsl. */

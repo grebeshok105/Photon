@@ -5,8 +5,8 @@ import com.lowdragmc.photon.client.gameobject.RuntimeValue;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.Objects;
 
@@ -14,7 +14,7 @@ import java.util.Objects;
  * {@link RendererSetting} plus the GPU-instancing toggle, for particle types with an instanced
  * render path (trail, beam). Tile particles keep the toggle on {@code ParticleRendererSetting}.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)

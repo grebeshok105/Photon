@@ -3,8 +3,8 @@ package com.lowdragmc.photon.client.postfx.runtime;
 import com.lowdragmc.lowdraglib2.Platform;
 import com.lowdragmc.lowdraglib2.client.shader.HDRTarget;
 import com.lowdragmc.photon.client.postfx.graph.TargetFormat;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
@@ -22,7 +22,7 @@ import java.util.Map;
  * across frames (LIFO — the hottest target first) and are destroyed after {@link #EVICT_AFTER_FRAMES}
  * frames unused ({@link #endFrame}) or on window resize ({@link #invalidateAll}). Render thread only.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class PostFXTargetPool {
 
     private static final class Pooled {

@@ -6,8 +6,8 @@ import com.lowdragmc.photon.client.gameobject.particle.IParticle;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.ShaderInstance;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Vector3f;
 
 import javax.annotation.Nonnull;
@@ -22,7 +22,7 @@ import java.util.Collection;
  * mirrored between {@link #renderBeam} and the BEAM_INSTANCE branch of photon:particle.glsl.
  * The raycast end resolution stays on the CPU in both paths.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 @ParametersAreNonnullByDefault
 public class BeamParticleRenderer {
 

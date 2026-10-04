@@ -13,8 +13,8 @@ import com.lowdragmc.photon.client.gameobject.emitter.data.number.NumberFunction
 import com.lowdragmc.photon.client.gameobject.emitter.data.shape.IShape;
 import com.lowdragmc.photon.client.fx.timeline.AnimatedPropertyType;
 import com.lowdragmc.photon.gui.editor.view.timeline.TrackType;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.function.Supplier;
 
@@ -23,28 +23,28 @@ public class PhotonRegistries {
     // FX objects are type-driven: a registered FXObjectType supplies the creator + type-level apis.
     // each fx-object class declares its own @LDLRegisterClient static TYPE and returns it from
     // IFXObject#getFXObjectType().
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static LDLRegistry.String<FXObjectType> FX_OBJECTS;
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static AutoRegistry.LDLibRegisterClient<IMaterial, Supplier<IMaterial>> MATERIALS;
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static AutoRegistry.LDLibRegisterClient<NumberFunction, Supplier<NumberFunction>> NUMBER_FUNCTIONS;
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static AutoRegistry.LDLibRegisterClient<IShape, Supplier<IShape>> SHAPES;
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static AutoRegistry.LDLibRegisterClient<IModelSource, Supplier<IModelSource>> MODEL_SOURCES;
 
     // these are stateless "type" singletons: each declares a @LDLRegisterClient static instance which we
     // register directly (no per-call creator / cache), populated via findAnnotationStaticField below.
     // a TrackType drives track creation AND supplies the track's UI editor.
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static LDLRegistry.String<TrackType> TIMELINE_TRACKS;
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     public static LDLRegistry.String<AnimatedPropertyType> ANIMATED_PROPERTIES;
 
     static {
@@ -56,7 +56,7 @@ public class PhotonRegistries {
     public static void init() {
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Environment(EnvType.CLIENT)
     private static class Client {
         public static void load() {
             FX_OBJECTS = new LDLRegistry.String<>(Photon.id("fx_object"));

@@ -10,14 +10,14 @@ import com.lowdragmc.photon.client.gameobject.emitter.data.number.curve.ECBCurve
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 import java.util.List;
 
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class RotationPropertyType extends TransformPropertyType {
     @LDLRegisterClient(name = "rotation", registry = "photon:animated_property")
     public static final RotationPropertyType INSTANCE = new RotationPropertyType();

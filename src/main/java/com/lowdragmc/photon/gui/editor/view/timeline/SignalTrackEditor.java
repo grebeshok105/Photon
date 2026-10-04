@@ -20,8 +20,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ import java.util.Set;
  * curve keyframes — the machinery mirrors {@link AnimationTrackEditor}'s keyframe selection, but in 1-D
  * (time only) on the main lane.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class SignalTrackEditor extends TrackEditor {
 
     public static class SignalTrackUIState extends TrackUIState {

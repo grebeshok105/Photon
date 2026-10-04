@@ -7,6 +7,8 @@
   "client": [
     "GameRendererMixin",
     "MinecraftMixin",
+    "PackRepositoryMixin",
+    "LevelRendererMixin",
     "ParticleEngineMixin",
     "accessor.ParticleEngineAccessor",
     "iris.BlendOverrideAccessors$BlendModeOverrideAccessor",
@@ -15,8 +17,7 @@
     "iris.FallbackShaderAccessor",
     "iris.IrisRenderingPipelineAccessor"
   ],
-  "mixins": [
-  ],
+  "mixins": [],
   "injectors": {
     "defaultRequire": 1
   }

@@ -1,7 +1,7 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model.skin;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * {@link #sample} writes into a TRS array the caller pre-filled with the rest pose, because a clip only
  * says what it animates.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class AnimationClip {
 
     public enum Path {

@@ -3,8 +3,8 @@ package com.lowdragmc.photon.client.fx.timeline;
 import com.lowdragmc.photon.Photon;
 import com.lowdragmc.photon.client.fx.IEffectExecutor;
 import net.minecraft.nbt.CompoundTag;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * {@link IEffectExecutor#onTimelineSignal} hook (per-effect) and every listener registered here (global).
  * Signals only fire on live forward playback (see {@link TimelinePlayer}).
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class PhotonSignals {
     private PhotonSignals() {
     }

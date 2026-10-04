@@ -1,15 +1,15 @@
 package com.lowdragmc.photon.client.gameobject.emitter.data.model.skin;
 
 import com.lowdragmc.photon.client.gameobject.emitter.data.model.PhotonMesh;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * Linear blend skinning on the CPU: a clip and a time in, a geometry stream out.
  * Not thread-safe — one deformer owns one set of scratch buffers.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class SkinDeformer {
 
     private final Skeleton skeleton;

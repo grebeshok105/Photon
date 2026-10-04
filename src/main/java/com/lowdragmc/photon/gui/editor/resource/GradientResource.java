@@ -18,7 +18,7 @@ import com.lowdragmc.photon.client.gameobject.emitter.data.number.color.RandomGr
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
-import net.neoforged.neoforge.common.util.INBTSerializable;
+import com.lowdragmc.lowdraglib2.utils.INBTSerializable;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;

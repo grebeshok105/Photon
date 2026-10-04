@@ -1,5 +1,6 @@
 package com.lowdragmc.photon.gui.editor.view.scene;
 
+import com.lowdragmc.photon.client.fx.FXHelper;
 import com.lowdragmc.lowdraglib2.client.utils.RenderBufferUtils;
 import com.lowdragmc.lowdraglib2.editor.ui.View;
 import com.lowdragmc.lowdraglib2.editor.ui.sceneeditor.SceneEditor;
@@ -261,7 +262,7 @@ public class SceneView extends View implements FXSceneOptions {
                 fxObjectInfoView.getInspected().drawEditorAfterWorld(this, bufferSource, partialTicks);
                 if (isCullBoxVisible && fxObjectInfoView.getInspected() instanceof FXObject fxObject) {
                     var cullBox = fxObject.getRenderBoundingBox(partialTicks);
-                    if (cullBox != AABB.INFINITE) {
+                    if (cullBox != FXHelper.INFINITE_AABB) {
                         RenderSystem.enableBlend();
                         RenderSystem.disableDepthTest();
                         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

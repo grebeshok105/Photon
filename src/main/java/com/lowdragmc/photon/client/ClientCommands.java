@@ -24,10 +24,10 @@ import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import net.minecraft.commands.Commands;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.minecraft.network.chat.ClickEvent;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
@@ -41,7 +41,7 @@ import static com.lowdragmc.lowdraglib2.client.ClientCommands.createLiteral;
  * @date 2023/2/9
  * @implNote ClientCommands
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public class ClientCommands {
 
     @SuppressWarnings("unchecked")
@@ -49,7 +49,7 @@ public class ClientCommands {
         return List.of(
                 (LiteralArgumentBuilder<S>) createLiteral("photon_editor").executes(context -> {
                     if (Platform.getMinecraftServer() != null && !Platform.getMinecraftServer().isSingleplayer()) {
-                        context.getSource().sendFailure(Component.literal("This command can only be used in singleplayer"));
+                        context.getSource().sendError(Component.literal("This command can only be used in singleplayer"));
                         return 0;
                     }
                     var minecraft = Minecraft.getInstance();
@@ -67,9 +67,9 @@ public class ClientCommands {
                 // "type(path)" resource path.
                 (LiteralArgumentBuilder<S>) createLiteral("photonfx")
                         .then(createLiteral("test")
-                                .then(Commands.argument("effect", StringArgumentType.string())
+                                .then(ClientCommandManager.argument("effect", StringArgumentType.string())
                                         .executes(context -> startTestEffect(context, 1f))
-                                        .then(Commands.argument("weight", FloatArgumentType.floatArg(0f, 1f))
+                                        .then(ClientCommandManager.argument("weight", FloatArgumentType.floatArg(0f, 1f))
                                                 .executes(context -> startTestEffect(context,
                                                         FloatArgumentType.getFloat(context, "weight"))))))
                         .then(createLiteral("clear")
@@ -107,7 +107,7 @@ public class ClientCommands {
                                     }
                                     return 1;
                                 }))
-                        .then(Commands.literal("convert").requires(source -> source.hasPermission(2))
+                        .then(ClientCommandManager.literal("convert").requires(source -> source.getPlayer().hasPermissions(2))
                                 .executes(context -> {
                                     if (Minecraft.getInstance().player != null) {
                                         Minecraft.getInstance().player.sendSystemMessage(

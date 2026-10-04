@@ -1,7 +1,7 @@
 package com.lowdragmc.photon.client.gameobject.particle;
 
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -25,7 +25,7 @@ import org.joml.Vector3f;
  * particle instead of two matrices. A {@code null} frame means identity — in {@code Local} simulation
  * space the emitter's frame IS simulation space and no conversion is needed at all.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class SpawnFrame {
 
     private final Matrix4f emitterToSim;

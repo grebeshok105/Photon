@@ -12,9 +12,9 @@ import net.minecraft.server.packs.repository.PackCompatibility;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.server.packs.repository.RepositorySource;
 import net.minecraft.world.flag.FeatureFlagSet;
-import net.neoforged.fml.ModList;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 import com.google.gson.JsonParser;
 import com.lowdragmc.lowdraglib2.editor.resource.FilePath;
@@ -65,7 +65,7 @@ import java.util.function.Consumer;
  * {@code fxpacks/<name>/} at the jar root (mounted natively), or drop the {@code .fxpack} file
  * itself under {@code fxpacks/} (extracted once into a content-addressed cache, then mounted).
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class FXPacks {
     public static final String SUFFIX = ".fxpack";
 
@@ -116,12 +116,15 @@ public final class FXPacks {
     /** Mount every fx pack shipped inside mod jars under {@code fxpacks/}; see {@link #repositorySource}. */
     private static void mountModPacks(Consumer<Pack> consumer) {
         var liveCacheFiles = new HashSet<String>();
-        for (var modFileInfo : ModList.get().getModFiles()) {
-            var modId = modFileInfo.getMods().isEmpty() ? modFileInfo.getFile().getFileName()
-                    : modFileInfo.getMods().getFirst().getModId();
+        for (var mod : FabricLoader.getInstance().getAllMods()) {
+            var modId = mod.getMetadata().getId();
             try {
-                var packsDir = modFileInfo.getFile().findResource(MOD_FXPACKS_DIR);
-                if (!Files.isDirectory(packsDir)) continue;
+                // fabric exposes each mod's root path(s) instead of a findResource lookup
+                var packsDir = mod.getRootPaths().stream()
+                        .map(root -> root.resolve(MOD_FXPACKS_DIR))
+                        .filter(Files::isDirectory)
+                        .findFirst().orElse(null);
+                if (packsDir == null) continue;
                 try (var entries = Files.list(packsDir)) {
                     for (var entry : entries.toList()) {
                         var name = stripSlash(entry.getFileName().toString());
@@ -152,7 +155,7 @@ public final class FXPacks {
         // constructed directly (not readMetaAndCreate): always compatible, hidden from the pack
         // screen, pinned to the bottom = lowest priority (everything else overrides fx-pack assets)
         var metadata = new Pack.Metadata(Component.literal("Photon FX pack " + displayName),
-                PackCompatibility.COMPATIBLE, FeatureFlagSet.of(), List.of(), true);
+                PackCompatibility.COMPATIBLE, FeatureFlagSet.of(), List.of());
         return new Pack(location, resources, metadata, new PackSelectionConfig(true, Pack.Position.BOTTOM, true));
     }
 

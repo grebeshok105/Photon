@@ -4,8 +4,8 @@ import com.lowdragmc.lowdraglib2.client.shader.HDRTarget;
 import com.lowdragmc.photon.client.gameobject.emitter.renderpipeline.RenderPassPipeline;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.platform.GlStateManager;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL30;
 
@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL30;
  * {@link #requestCapture()} every frame it draws, and the next frame's render hooks fill
  * {@link #source()}; when no preview is open, nothing is copied. Render thread only.
  */
-@OnlyIn(Dist.CLIENT)
+@Environment(EnvType.CLIENT)
 public final class PostFXPreview {
 
     @Nullable
