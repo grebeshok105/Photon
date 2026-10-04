@@ -51,7 +51,7 @@ dependencies {
 
     // Vendored fabric ports (grebeshok105/LDLib2 + grebeshok105/KilaGraph, fabric-1.21.1 branches)
     modImplementation files('libs/ldlib2-fabric-1.21.1-2.7.jar')
-    modImplementation files('libs/kilagraph-fabric-1.21.1-21.1.0.15-fabric.jar')
+    modImplementation files('libs/kilagraph-fabric-1.21.1-21.1.0.15.jar')
 
     // kilagraph's fluid nodes build against the architectury FluidStack API
     modImplementation "curse.maven:architectury-api-419699:5786326"
@@ -134,7 +134,7 @@ jar {
     // accept file deps, so nest it under META-INF/jars directly — same jar-in-jar semantics.
     // The jar must be copied byte-for-byte: zipTree would explode it, stranding kilagraph's
     // fabric.mod.json/mixins under META-INF/jars while its classes leak to the jar root.
-    from('libs/kilagraph-fabric-1.21.1-21.1.0.15-fabric.jar') {
+    from('libs/kilagraph-fabric-1.21.1-21.1.0.15.jar') {
         into 'META-INF/jars'
     }
 }
