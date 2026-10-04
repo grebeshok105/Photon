@@ -14,7 +14,7 @@
   },
   "license": "${mod_license}",
   "icon": "icon.png",
-  "environment": "client",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "com.lowdragmc.photon.Photon"
@@ -32,7 +32,8 @@
     "fabric-api": "*",
     "minecraft": "~1.21.1",
     "java": ">=21",
-    "ldlib2": "*",
+    "ldlib2": "${ldlib2_version_range}",
+    "kilagraph": "${kilagraph_version_range}",
     "architectury": "*",
     "forgeconfigapiport": "*"
   }

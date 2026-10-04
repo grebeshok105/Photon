@@ -132,7 +132,9 @@ jar {
     }
     // upstream bundles KilaGraph inside the photon jar (jarJar); loom's include() does not
     // accept file deps, so nest it under META-INF/jars directly — same jar-in-jar semantics.
-    from(zipTree('libs/kilagraph-fabric-1.21.1-21.1.0.15-fabric.jar')) {
+    // The jar must be copied byte-for-byte: zipTree would explode it, stranding kilagraph's
+    // fabric.mod.json/mixins under META-INF/jars while its classes leak to the jar root.
+    from('libs/kilagraph-fabric-1.21.1-21.1.0.15-fabric.jar') {
         into 'META-INF/jars'
     }
 }
