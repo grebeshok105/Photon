@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 
 import java.util.List;
 
@@ -41,5 +42,26 @@ public class PhotonClientListeners {
 
         // opt-in shader-pack layout readout (/photon_iris overlay)
         HudRenderCallback.EVENT.register((guiGraphics, tickDelta) -> IrisOverlay.render(guiGraphics));
+
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (pendingScreen != null && --pendingScreenTicks <= 0) {
+                client.setScreen(pendingScreen);
+                pendingScreen = null;
+            }
+        });
+    }
+
+    private static net.minecraft.client.gui.screens.Screen pendingScreen;
+    private static int pendingScreenTicks;
+
+    /**
+     * Schedules {@code screen} to be opened after {@code ticks} client ticks. Chat screens that run
+     * commands close themselves right after the command executes, and a key event queued against the
+     * stale chat screen can still fire afterwards and call {@code setScreen(null)} — both would kill
+     * a screen opened synchronously from a command handler.
+     */
+    public static void openScreenAfterTicks(net.minecraft.client.gui.screens.Screen screen, int ticks) {
+        pendingScreen = screen;
+        pendingScreenTicks = ticks;
     }
 }

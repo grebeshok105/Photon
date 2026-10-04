@@ -59,7 +59,12 @@ public class ClientCommands {
                             .shouldCloseOnEsc(false)
                             .shouldCloseOnKeyInventory(false);
                     var screen = new ModularUIScreen(ui, Component.empty());
-                    minecraft.setScreen(screen);
+                    // ChatScreen.keyPressed closes the chat screen AFTER the command runs
+                    // (handleChatInput → setScreen(null)), and a key event still queued against
+                    // the stale chat screen can fire a tick later and call setScreen(null) again —
+                    // both would clobber a screen opened immediately. Open the editor a couple of
+                    // client ticks later, once the input queue has been drained.
+                    PhotonClientListeners.openScreenAfterTicks(screen, 2);
                     return 1;
                 }),
                 // post-effect smoke test: keeps requesting the effect every frame until "clear".
